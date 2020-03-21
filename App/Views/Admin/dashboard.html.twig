@@ -1,0 +1,61 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css"/>
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="mt-5">
+            <table id="example" class="table table-striped table-bordered" style="width:100%">
+                <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Name</th>
+                    <th>Text</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if todos is defined %}
+                    {% for todo in todos %}
+                        <tr>
+                            <td>{{ todo.email }}</td>
+                            <td>{{ todo.name }}</td>
+                            <td>{{ todo.text }}</td>
+                            <td>
+                                {% if todo.status == 0 %}
+                                    <p>incomplete</p>
+                                {% else %}
+                                    done
+                                {% endif %}
+                            </td>
+                            <td class="text-center">
+                                <a href="admin/edit/{{ todo.id }}">Edit</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>
+
+    <script type="application/javascript">
+      $(document).ready(function () {
+        $('#example').DataTable({
+          "paging": true,
+          "ordering": false,
+          "info": true,
+        });
+      });
+    </script>
+{% endblock %}

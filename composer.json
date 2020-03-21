@@ -1,0 +1,22 @@
+{
+  "name": "root/html",
+  "authors": [
+    {
+      "name": "khudayberdiyev25",
+      "email": "khudayberdiyevotabek@gmail.com"
+    }
+  ],
+  "require": {
+    "twig/twig": "~2.0",
+    "php-database-migration/php-database-migration": "^3.8"
+  },
+  "config": {
+    "bin-dir": "bin"
+  },
+  "autoload": {
+    "psr-4": {
+      "Core\\": "Core/",
+      "App\\": "App/"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+language: php
+
+php:
+  - '5.6'
+  - '7.0'
+
+install:
+  - composer install
+  - bin/phpcs --standard=PSR2 Migrate/
+
+notifications:
+  on_success: always
+  on_failure: always
+
+sudo: false

@@ -1,0 +1,11 @@
+connection:
+    host:     localhost
+    driver:   mysql
+    port:     3306
+    username: root
+    password: otabek25
+    database: todo_db
+    charset:  utf8
+
+changelog: changelog
+default_editor: vim

@@ -1,0 +1,106 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Edit Todo{% endblock %}
+
+{% block vendor_stylesheets %}
+    {{ parent() }}
+    <style>
+        #todo-create-block {
+            height: 500px;
+            background: oldlace;
+            margin: 25px;
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+        }
+
+        #todo-text {
+            width: 100%;
+            height: 250px;
+            max-height: 270px;
+        }
+
+        .add_todo {
+            padding: 10px 35px;
+            float: right;
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+        }
+
+        #error-block {
+            background: var(--danger);
+            margin: 5px 0;
+            padding: 10px 0;
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+        }
+
+        #success-block {
+            background: #43A047;
+            margin: 5px 0;
+            padding: 10px 0;
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+
+        }
+
+        #example_length {
+            display: none;
+        }
+
+
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 offset-3">
+                {% if errors is defined %}
+                    {% for error in errors %}
+                        <div class="d-flex justify-content-center" id="error-block">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <div class="form-group" id="todo-create-block">
+                    <div class="container">
+                        {% if todo is defined %}
+                            <form action="" method="post">
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-2 col-form-label mt-4">Email</label>
+                                    <div class="col-sm-10 mt-3">
+                                        <input type="email" name="email" value="{{ todo.email }}" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputAuthor" class="col-sm-2 col-form-label">Author</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="name" value="{{ todo.name }}" class="form-control"
+                                               id="inputAuthor">
+                                    </div>
+                                </div>
+                                <div class="form-group m-0 p-0">
+                                    <label for="inputAuthor" class="col-form-label">Text</label>
+                                    <div class="col-sm-12 p-0">
+                                        <textarea name="text" id="todo-text">{{ todo.text }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="mt-2">
+                                    Status
+                                    <select name="status">
+                                        <option selected>
+                                            --select--
+                                        </option>
+                                        <option value="1">
+                                            completed
+                                        </option>
+                                        <option value="0">
+                                            incomplete
+                                        </option>
+                                    </select>
+                                </div>
+                                <button name="editTodo" class="btn btn-primary add_todo">Edit Todo</button>
+                            </form>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
